@@ -1,0 +1,31 @@
+{
+  "name": "omar-fawzy-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website showcasing IT & Systems Administration expertise",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "npx live-server --port=8000"
+  },
+  "keywords": [
+    "portfolio",
+    "personal-website",
+    "it-administrator",
+    "systems-administrator",
+    "help-desk",
+    "software-control",
+    "gaming-theme",
+    "responsive-design"
+  ],
+  "author": "Omar M. Fawzy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/omar-fawzy-portfolio.git"
+  },
+  "homepage": "https://yourusername.github.io/omar-fawzy-portfolio",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
