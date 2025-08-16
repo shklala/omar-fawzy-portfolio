@@ -64,34 +64,41 @@ document.querySelectorAll('section').forEach(section => {
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
+        // Let Formspree handle the submission
+        // We'll add custom validation and feedback
+        const name = this.querySelector('#name').value;
+        const email = this.querySelector('#email').value;
+        const subject = this.querySelector('#subject').value;
+        const message = this.querySelector('#message').value;
         
         // Basic validation
         if (!name || !email || !subject || !message) {
+            e.preventDefault();
             showNotification('Please fill in all fields', 'error');
             return;
         }
         
         if (!isValidEmail(email)) {
+            e.preventDefault();
             showNotification('Please enter a valid email address', 'error');
             return;
         }
         
-        // Simulate form submission (replace with actual form handling)
+        // Show sending notification
+        showNotification('Sending message...', 'info');
+        
+        // Form will submit to Formspree automatically
+        // We'll handle the response in the next section
+    });
+    
+    // Handle Formspree response
+    contactForm.addEventListener('formspree:success', function(e) {
         showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-        
-        // Reset form
-        this.reset();
-        
-        // In a real application, you would send this data to your server
-        console.log('Form submitted:', { name, email, subject, message });
+        contactForm.reset();
+    });
+    
+    contactForm.addEventListener('formspree:error', function(e) {
+        showNotification('Failed to send message. Please try again or contact me directly.', 'error');
     });
 }
 
